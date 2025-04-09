@@ -27,6 +27,7 @@ Global $bAutoBuyUpgradeState = False, _
 		$bDisableRageState = False, _
 		$bAutoAscendState = False, _
 		$bPerfectChestHuntState = False, _
+		$bFirstAutoBuyCycle = True, _
 		$bTogglePause = False
 
 Global $sVersion = "3.4.7"
@@ -39,7 +40,7 @@ Global $iJumpSliderValue = 150, _
 		$iTimerAutoAscend = TimerInit(), _
 		$iTimerFocusGame = TimerInit(), _
 		$iLastCheckTimeLoop = TimerInit()
-Global $aSettingGlobalVariables[16] = ["iAutoBuyTimer", "iAutoAscendTimer", "bAutoAscendState", "bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bCirclePortalsState", "iJumpSliderValue", "bNoLockpickingState", "iCirclePortalsCount", "bDimensionalState", "bBiDimensionalState", "bDisableRageState", "bNoReinforcedCrystalSaverState", "bPerfectChestHuntState"]
+Global $aSettingGlobalVariables[17] = ["iAutoBuyTimer", "iAutoAscendTimer", "bAutoAscendState", "bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bCirclePortalsState", "iJumpSliderValue", "bNoLockpickingState", "iCirclePortalsCount", "bDimensionalState", "bBiDimensionalState", "bDisableRageState", "bNoReinforcedCrystalSaverState", "bPerfectChestHuntState", "bFirstAutoBuyCycle"]
 Global $aSettingCheckBoxes[12] = ["bAutoAscendState", "bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bCirclePortalsState", "bNoLockpickingState", "bBiDimensionalState", "bDimensionalState", "bDisableRageState", "bNoReinforcedCrystalSaverState", "bPerfectChestHuntState"]
 
 ; #FUNCTION# ====================================================================================================================

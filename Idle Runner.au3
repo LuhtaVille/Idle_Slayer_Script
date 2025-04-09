@@ -239,7 +239,7 @@ Func Main()
 					WinActivate("Idle Slayer")
 					If WinGetTitle("[ACTIVE]") == "Idle Slayer" Then
 						SyncProcess(False)
-						BuyEquipment()
+						BuyUpgrade()
 						SyncProcess(True)
 					EndIf
 				EndIf
@@ -559,49 +559,63 @@ Func BuyEquipment()
 EndFunc   ;==>BuyEquipment
 
 Func BuyUpgrade()
-	; Navigate to upgrade and scroll up
-	MouseClick("left", 927, 683, 1, 0)
+	;Close Shop window if open
+	MouseClick("left", 1244, 712, 1, 0)
 	Sleep(150)
-	; Top of scrollbar
-	MouseMove(1254, 172, 0)
-	Do
-		MouseWheel($MOUSE_WHEEL_UP, 20)
-		;Top of searchbar
-		PixelSearch(1254, 167, 1254, 167, 0xD6D6D6)
-	Until @error
-	Sleep(400)
-	Local $bSomethingBought = False
-	Local $iY = 170
-	While 1
-		; Check if RandomBox Magnet is next upgrade
-		PixelSearch(882, $iY, 909, $iY + 72, 0xF4B41B)
-		If Not @error Then
-			$iY += 96
-		EndIf
-		; Check if RandomBox Magnet is next upgrade
-		PixelSearch(882, $iY, 909, $iY + 72, 0xE478FF)
-		If Not @error Then
-			$iY += 96
-		EndIf
-		;Electric worm
-		;PixelSearch(850, $iY, 850, $iY + 72, 0xF7A01E)
-		;If Not @error Then
-		;	$iY += 96
-		;EndIf
-		PixelSearch(1180, $iY, 1180, $iY, 0x10A322, 9)
-		If @error Then
-			ExitLoop
+	;Open shop window
+	MouseClick("left", 1163, 655, 1, 0)
+	Sleep(150)
+	PixelSearch(807, 142, 807, 142, 0xFFFFFF)
+	If Not @error Then
+		; Navigate to upgrade and scroll up
+		MouseClick("left", 927, 683, 1, 0)
+		Sleep(150)
+		; Top of scrollbar
+		MouseMove(1254, 172, 0)
+		Do
+			MouseWheel($MOUSE_WHEEL_UP, 20)
+			;Top of searchbar
+			PixelSearch(1254, 167, 1254, 167, 0xD6D6D6)
+		Until @error
+		Sleep(400)
+		Local $bSomethingBought = False
+		Local $iY = 170
+		While 1
+			; Check if RandomBox Magnet is next upgrade
+			PixelSearch(882, $iY, 909, $iY + 72, 0xF4B41B)
+			If Not @error Then
+				$iY += 96
+			EndIf
+			; Check if RandomBox Magnet is next upgrade
+			PixelSearch(882, $iY, 909, $iY + 72, 0xE478FF)
+			If Not @error Then
+				$iY += 96
+			EndIf
+			;Electric worm
+			;PixelSearch(850, $iY, 850, $iY + 72, 0xF7A01E)
+			;If Not @error Then
+			;	$iY += 96
+			;EndIf
+			PixelSearch(1180, $iY, 1180, $iY, 0x10A322, 9)
+			If @error Then
+				ExitLoop
+			Else
+				$bSomethingBought = True
+				; Click green buy
+				MouseClick("left", 1180, $iY, 1, 0)
+				Sleep(50)
+			EndIf
+		WEnd
+		If $bSomethingBought Then
+			$bFirstAutoBuyCycle = False
+			BuyEquipment()
+		ElseIf $bFirstAutoBuyCycle Then
+			$bFirstAutoBuyCycle = False
+			BuyEquipment()
 		Else
-			$bSomethingBought = True
-			; Click green buy
-			MouseClick("left", 1180, $iY, 1, 0)
-			Sleep(50)
+			$bFirstAutoBuyCycle = True
+			MouseClick("left", 1222, 677, 1, 0)
 		EndIf
-	WEnd
-	If $bSomethingBought Then
-		BuyEquipment()
-	Else
-		MouseClick("left", 1222, 677, 1, 0)
 	EndIf
 EndFunc   ;==>BuyUpgrade
 
