@@ -105,6 +105,7 @@ Func Main()
 	HotKeySet("{Home}", "Pause")
 	HotKeySet("+{Esc}", "IdleClose")
 	HotKeySet("^+b", "BuyEquipment")
+	HotKeySet("^+v", "BuyUpgrade")
 	; Create Saving Directory
 	DirCreate("IdleRunnerLogs")
 	; Create GUI
