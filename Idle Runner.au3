@@ -593,10 +593,10 @@ Func BuyUpgrade()
 				$iY += 96
 			EndIf
 			;Electric worm
-			;PixelSearch(850, $iY, 850, $iY + 72, 0xF7A01E)
-			;If Not @error Then
-			;	$iY += 96
-			;EndIf
+			PixelSearch(850, $iY, 850, $iY + 72, 0xF7A01E)
+			If Not @error Then
+				$iY += 96
+			EndIf
 			PixelSearch(1180, $iY, 1180, $iY, 0x10A322, 9)
 			If @error Then
 				ExitLoop
